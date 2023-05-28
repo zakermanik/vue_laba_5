@@ -5,7 +5,6 @@ import Contacts from '@/pages/Contacts'
 import currentPizza from '@/pages/currentPizza'
 import Animal from '@/components/Animal.vue';
 import diffAnimal from '@/components/diffAnimal.vue';
-import Animals from '@/components/Animals.vue'
 
 
 const routes = [
@@ -30,21 +29,18 @@ const routes = [
     component: currentPizza
   },
   {
-    path: '/animals',
-    name: 'animals',
-    component: Animals
-  },
-  {
-    path: '/animals/:id',
+    path: '/animals/:name',
     name: 'animal',
     component: Animal,
-    props: true
-  },
-  {
-    path: '/animals/kind/:id',
-    name: 'diffAnimal',
-    component: diffAnimal,
-    props: true
+    props: true,
+    children: [
+      {
+        path: ':kindname',
+        name: 'diffAnimal',
+        component: diffAnimal,
+        props: true
+      }
+    ]
   },
 ]
 
